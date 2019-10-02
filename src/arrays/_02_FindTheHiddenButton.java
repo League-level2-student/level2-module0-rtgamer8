@@ -29,7 +29,7 @@ public class _02_FindTheHiddenButton implements ActionListener {
 	}
 
 	public void start() {
-		JFrame frame = new JFrame();
+		
 		window = new JFrame("Find the Button");
 		panel = new JPanel();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,8 +37,9 @@ public class _02_FindTheHiddenButton implements ActionListener {
 		// 3. Ask the user to enter a positive number and convert it to an int√
 		String words = JOptionPane.showInputDialog("Please enter a positive number");
 		int num = Integer.parseInt(words);
-		// 4. Initialize the array of JButtons to be the size of the int created in step√
-		button = new JButton[50];
+		// 4. Initialize the array of JButtons to be the size of the int created in
+		// step√
+		button = new JButton[num];
 		for (int i = 0; i < button.length; i++) {
 			button[i] = new JButton();
 
@@ -55,24 +56,23 @@ public class _02_FindTheHiddenButton implements ActionListener {
 		// 9 add the panel to the window√
 		window.add(panel);
 		// 10. call setExtendedState(JFrame.MAXIMIZED_BOTH) on your JFrame object.√
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
+		window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 		// 11. set the JFrame to visible.√
 		window.setVisible(true);
 		// 12. Give the user the instructions for the game.√
-		JOptionPane.showMessageDialog(null,
-				"The rule of the game are simple,  find the hidden button and click it. ");
-		// 13. initialize the hiddenButton variable to a random number less than the int√
+		JOptionPane.showMessageDialog(null, "The rule of the game are simple,  find the hidden button and click it. ");
+		// 13. initialize the hiddenButton variable to a random number less than the
+		// int√
 		// created int step 3
 		Random r = new Random();
-		
-		hiddenButton = r.nextInt(num);
-		
-//14. Set the text of the JButton located at hiddenButton to "ME"
 
-		
-		// 15. Use Thread.sleep(1000); to pause the program.√
-		// Surround it with a try/catch - use Eclipse helper for this√
+		hiddenButton = r.nextInt(num);
+
+		// 14. Set the text of the JButton located at hiddenButton to "ME"
+		button[hiddenButton].setText("ME");
+		// 15. Use Thread.sleep(1000); to pause the program.
+		// Surround it with a try/catch - use Eclipse helper for this
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -80,6 +80,8 @@ public class _02_FindTheHiddenButton implements ActionListener {
 			e.printStackTrace();
 		}
 		// 16. Set the text of the JButton located at hiddenButton to be blank.
+		button[hiddenButton].setText(" ");
+	
 
 	}
 
@@ -88,13 +90,15 @@ public class _02_FindTheHiddenButton implements ActionListener {
 		JButton buttonClicked = (JButton) e.getSource();
 
 		// 17. if the hiddenButton is clicked, tell the user that they win.
-//if(e.getSource==buttonClicked ) {
-	JOptionPane.showMessageDialog(null, " Congratulation you won the game!");
-}
-		// 18. else tell them to try again√
-	//	else {
-	//		JOptionPane.showMessageDialog(null, "You failed, try again.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          and succeed   ");
-//		}
-	}
 
-//}
+		if (buttonClicked == button[hiddenButton]) {
+			JOptionPane.showMessageDialog(null, "cONgRatS yOU WiN!");
+		}
+
+		// 18. else tell them to try again
+
+		else {
+			JOptionPane.showMessageDialog(null, "nO, YOu CLiKed tHE wRoNG BuTtoN, pLEaSe tRy AGaIn!");
+		}
+	}
+}
